@@ -3,6 +3,7 @@ package com.example.usingh2.controller;
 import com.example.usingh2.entity.User;
 import com.example.usingh2.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -39,6 +40,14 @@ public class UserController {
         } else {
             throw new RuntimeException("User not found with ID: " + id);
         }
+    }
+
+//    Get User by ID
+    @GetMapping("/{id}")
+    public ResponseEntity<User> getUserById(@PathVariable Long id){
+        return userRepository.findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
 }
