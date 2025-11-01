@@ -1,47 +1,20 @@
 package com.example.usingh2.entity;
 
 import jakarta.persistence.*;
+import lombok.*;   // ✅ Lombok annotations
 
+// ✅ This class represents a database table named "user"
 @Entity
 @Table(name = "users")
+@Data                     // Auto-generates Getters, Setters, toString, equals, hashCode
+@NoArgsConstructor         // Creates an empty (no-args) constructor
+@AllArgsConstructor         // Creates a constructor with all fields
 public class User {
 
-    //    Primary key
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id   // Primary key
+    @GeneratedValue(strategy = GenerationType.IDENTITY)  // Auto-increment ID
     private Long id;
 
     private String name;
     private String email;
-
-    public User() {}
-
-    public User(String name, String email){
-        this.name = name;
-        this.email = email;
-    }
-
-    public Long getId(){
-        return id;
-    }
-
-    public void setId(Long id){
-        this.id = id;
-    }
-
-    public String getName(){
-        return name;
-    }
-
-    public void setName(String name){
-        this.name = name;
-    }
-
-    public String getEmail(){
-        return email;
-    }
-
-    public void setEmail(String email){
-        this.email = email;
-    }
 }
